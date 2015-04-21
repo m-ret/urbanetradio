@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar class="capilleira-bar-header">
+    <h1 class="title">Display Sport</h1>
+    <div class="buttons">
+      <button class="button button-clear button-dark left" ng-click="closeModal()"><i class="ion-close-round"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="login">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="user.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.pwdForLogin">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="signIn(user)">
+          Sign-In
+        </button>
+      </div>
+    </form>
+
+    <p class="text-center">
+      <a href="#/forgot-password">Forgot password</a>
+    </p>
+  </ion-content>
+</ion-modal-view>
+

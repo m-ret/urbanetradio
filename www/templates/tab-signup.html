@@ -1,0 +1,25 @@
+<ion-view view-title="Sign-In">
+  <ion-content>
+    <form action="" name="sign-up">
+      <div class="list">
+        <div class="item item-divider text-center">
+          Crea tu cuenta
+        </div>
+        <label class="item item-input">
+          <input type="text" placeholder="Nombre completo" ng-model="user.name" required="required">
+        </label>
+        <label class="item item-input">
+          <input type="email" placeholder="E-mail" ng-model="user.email" required="required">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Contraseña" ng-model="user.password" required="required">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="createUser(user)">
+          Sign-In
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

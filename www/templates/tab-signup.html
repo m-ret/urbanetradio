@@ -14,12 +14,23 @@
         <label class="item item-input">
           <input type="password" placeholder="Contraseña" ng-model="user.password" required="required">
         </label>
-      </div>
-      <div class="padding">
-        <button class="button button-block button-positive" ng-click="createUser(user)">
+        <label class="item item-input">
+          <input type="password" placeholder="Confirmar Contraseña" ng-model="user.confirm" required="required">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="createUser(user)">
           Sign-In
-        </button>
+          </button>
+        </label>
+        <label class="item item-text-wrap" ng-if="signUpErrorShow">
+          <i class="icon ion-alert-circled assertive"></i>
+          <span class="assertive">{{signUpErrorMsg}}</span>
+
+        </label>
       </div>
+
+      
+
     </form>
   </ion-content>
 </ion-view>

@@ -15,6 +15,8 @@ angular.module('urbanet.app.controllers', [])
     animation: 'slide-in-up'
   });
 
+  $scope.signUpErrorShow = false;
+
   $scope.openModal = function() {
     $scope.modal.show();
   };
@@ -24,28 +26,43 @@ angular.module('urbanet.app.controllers', [])
   };
 
   $scope.createUser = function(user) {
+    $ionicLoading.show({
+      template: 'Signing Up...'
+    });
+    $scope.validationError = false;
     console.log(user);
     console.log("Create User Function called");
-    if (user && user.email && user.password && user.name) {
-      $ionicLoading.show({
-        template: 'Signing Up...'
-      });
-      auth.$createUser({
-        email: user.email,
-        password: user.password
-      }).then(function (userData) {
-        alert("User created successfully!");
-        ref.child("users").child(userData.uid).set({
+    if (user && user.email && user.name ) {
+      if (user.password === user.confirm ) {
+
+        auth.$createUser({
           email: user.email,
-          displayName: user.name
+          password: user.password
+        }).then(function (userData) {
+          alert("User created successfully!");
+          ref.child("users").child(userData.uid).set({
+            email: user.email,
+            displayName: user.name
+          });
+          $ionicLoading.hide();
+        }).catch(function (error) {
+          alert("Error: " + error);
+          $ionicLoading.hide();
         });
+
+        console.log('everything workin great');
+      }else {
         $ionicLoading.hide();
-      }).catch(function (error) {
-        alert("Error: " + error);
-        $ionicLoading.hide();
-      });
-    } else
-    console.log("Please fill all details");
+        console.log('password did not match');
+        $scope.signUpErrorShow = true;
+        $scope.signUpErrorMsg = "Error al confirmar contraseña";
+      }
+    }else {
+      $ionicLoading.hide();
+      console.log('Falta espacio requierido');
+      $scope.signUpErrorShow = true;
+      $scope.signUpErrorMsg = "Falta espacio requerido";
+    }
   };
 
   $scope.signIn = function (user) {

@@ -2,69 +2,76 @@
 
 angular.module('urbanet.app.controllers', [])
 
-.controller("LoginCtrl", function($scope, $rootScope, $ionicPopup, $timeout, $cordovaOauth, $firebaseAuth) {
+.controller("LoginCtrl", function($scope, $rootScope, $ionicLoading, $ionicModal,
+                                  $timeout, $firebaseAuth, $state) {
 
-  var fb = new Firebase("https://urbanetapp.firebaseio.com");
+  var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
+      auth = $firebaseAuth(ref);
 
-  var auth = $firebaseAuth(fb);
+  $ionicModal.fromTemplateUrl('templates/modal-login.html', function($ionicModal) {
+    $scope.modal = $ionicModal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up'
+  });
 
-  $scope.loginPopup = function() {
-
-    $scope.data = {}
-
-    // An elaborate, custom popup
-    var myPopup = $ionicPopup.show({
-      // template: '<button class="ion-social-facebook" type="button" ng-model="data.wifi" ng-click="login()">',
-      title: 'Ingresá con Facebook',
-      // subTitle: '',
-      scope: $scope,
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: '<b>Inicia sesión</b>',
-          type: 'button-positive',
-          // onTap: function(e) {
-          //   if (!$scope.data.wifi) {
-          //     //don't allow the user to close unless he enters wifi password
-          //     e.preventDefault();
-          //   } else {
-          //     return $scope.data.wifi;
-          //   }
-          // }
-        }
-      ]
-    });
-    myPopup.then(function(res) {
-      console.log('Tapped!', res);
-      $scope.login();
-      myPopup.close();
-    });
-    // $timeout(function() {
-    //    myPopup.close(); //close the popup after 3 seconds for some reason
-    // }, 3000);
+  $scope.openModal = function() {
+    $scope.modal.show();
   };
 
-  $scope.login = function() {
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
 
-        $cordovaOauth.facebook("665553936905980", ["email"]).then(function(result) {
-            auth.$authWithOAuthToken("facebook", result.access_token).then(function(authData) {
-                console.log(JSON.stringify(authData));
-            }, function(error) {
-                console.error("ERROR: " + error);
-            });
-        }, function(error) {
-            console.log("ERROR: " + error);
+  $scope.createUser = function(user) {
+    console.log(user);
+    console.log("Create User Function called");
+    if (user && user.email && user.password && user.name) {
+      $ionicLoading.show({
+        template: 'Signing Up...'
+      });
+      auth.$createUser({
+        email: user.email,
+        password: user.password
+      }).then(function (userData) {
+        alert("User created successfully!");
+        ref.child("users").child(userData.uid).set({
+          email: user.email,
+          displayName: user.name
         });
-
-    // $cordovaOauth.facebook("665553936905980", ["email"]).then(function(result) {
-    //     console.log('ON FB');
-    //     console.log(result);
-    // }, function(error) {
-    //     console.log('OH NO :(');
-    //     console.log(error);
-    // });
-
-    // console.log('LOGIN');
+        $ionicLoading.hide();
+      }).catch(function (error) {
+        alert("Error: " + error);
+        $ionicLoading.hide();
+      });
+    } else
+    console.log("Please fill all details");
   };
 
+  $scope.signIn = function (user) {
+    if (user && user.email && user.pwdForLogin) {
+      $ionicLoading.show({
+        template: 'Signing In...'
+      });
+      auth.$authWithPassword({
+        email: user.email,
+        password: user.pwdForLogin
+      }).then(function (authData) {
+        console.log("Logged in as:" + authData.uid);
+        ref.child("users").child(authData.uid).once('value', function (snapshot) {
+          var val = snapshot.val();
+          $scope.$apply(function () {
+            $rootScope.displayName = val;
+          });
+        });
+        $scope.userLogin = true;
+        $ionicLoading.hide();
+        $scope.closeModal();
+      }).catch(function (error) {
+        alert("Authentication failed:" + error.message);
+        $ionicLoading.hide();
+      });
+    } else
+    console.log("Please enter email and password both");
+  };
 });

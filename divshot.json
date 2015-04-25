@@ -1,0 +1,6 @@
+{
+  "name": "urbanetradio",
+  "root": "www",
+  "clean_urls": true,
+  "error_page": "error.html"
+}

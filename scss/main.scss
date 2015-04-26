@@ -1,0 +1,27 @@
+//I changed .css to .sass so sass can understand the import.
+// @import '../www/lib/animate.css/animate.min';
+$fa-font-path:        '../lib/fontawesome/fonts' !default;
+@import '../www/lib/fontawesome/scss/font-awesome';
+
+// Configuration files.
+// @import 'config/theme';x
+
+// Modules.
+@import 'modules/functions';
+
+// Layout.
+@import 'layout/common';
+// @import 'layout/header';
+// @import 'layout/content';
+// @import 'layout/footer';
+// @import 'layout/sports';
+// @import 'layout/lines';
+// @import 'layout/keypad';
+// @import 'layout/call-wagering';
+// @import 'layout/loaders';
+// @import 'layout/account-figures';
+// @import 'layout/side-menu';
+// @import 'layout/sport-selection';
+// @import 'layout/search-input';
+// @import 'layout/login';
+// @import 'layout/betslip';

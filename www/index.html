@@ -4,13 +4,8 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -21,23 +16,39 @@
     <script src="lib/angularfire/dist/angularfire.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
+    <script src="js/directives/StreamingDirective.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/NewsCtrl.js"></script>
     <script src="js/controllers/PromoDetailCtrl.js"></script>
     <script src="js/services/AuthFactory.js"></script>
     <script src="js/services/NewsFactory.js"></script>
     <script src="js/services/PromoFactory.js"></script>
+    <script src="js/app.js"></script>
   </head>
-  <body ng-app="urbanet.app">
+
+  <body ng-app="urbanet.app" class="urbanet-base">
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
     <ion-header-bar class="bar-subheader">
-      <audio src="http://fire.wavestreamer.com:9711/UrbanetRadio"
-             controls="controls"> <!-- autoplay -->
-      </audio>
+      <audio-play>
+        <audio class="player">
+          <source src="http://fire.wavestreamer.com:9711/UrbanetRadio"/>
+        </audio>
+        <button class="button button-clear button-dark"
+                ng-click="playMusic()"
+                ng-hide="!playOrPause">
+          <i class="fa fa-play fa-lg"></i>
+        </button>
+        <button class="button button-clear button-dark"
+                ng-click="stopMusic()"
+                ng-show="!playOrPause">
+          <i class="fa fa-pause fa-lg"></i>
+        </button>
+        <input type="range" ng-change="changeVolume($event)"
+               ng-model="volume"step="0.1" min="0" max="1">
+      </audio-play>
     </ion-header-bar>
     <ion-nav-view></ion-nav-view>
   </body>

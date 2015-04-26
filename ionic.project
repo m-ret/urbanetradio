@@ -1,5 +1,13 @@
 {
   "name": "Urbanet App",
   "email": "",
-  "app_id": "43b5b33d"
+  "app_id": "43b5b33d",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

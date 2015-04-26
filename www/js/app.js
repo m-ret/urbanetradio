@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('urbanet.app', ['ionic',
                                'firebase',
+                               'urbanet.app.directives',
                                'urbanet.app.controllers',
                                'urbanet.app.services'])
 
@@ -21,7 +22,11 @@ angular.module('urbanet.app', ['ionic',
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+  $ionicConfigProvider.navBar.alignTitle('center');
+  $ionicConfigProvider.tabs.position('bottom');
+
   $stateProvider
 
     .state('tabs', {

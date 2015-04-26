@@ -1,5 +1,5 @@
-<ion-view view-title="Promociones">
-  <ion-nav-buttons side="primary">
+<ion-view view-title="Promociones" class="tab-promotions">
+  <ion-nav-buttons side="left">
     <button class="button button-clear button-clear" ng-click="openModal()">
       Login
     </button>
@@ -9,7 +9,7 @@
       on-refresh="doRefresh()">
     </ion-refresher>
     <div ng-repeat="promos in promotions"
-         class="padding-vertical">
+         class="padding-bottom">
       <div class="item item-text-wrap">
           <b>{{:: promos.promoContent}}</b>
           <p>{{:: promos.eventDate}}</p>

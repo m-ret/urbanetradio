@@ -16,6 +16,7 @@ angular.module('urbanet.app.controllers', [])
   });
 
   $scope.signUpErrorShow = false;
+  $scope.signInErrorShow = false;
 
   $scope.openModal = function() {
     $scope.modal.show();
@@ -57,31 +58,29 @@ angular.module('urbanet.app.controllers', [])
               text: 'Aceptar',
               type: 'button-positive',
               onTap: function() {
-              console.log('clicked aceptar');  
+                $state.transitionTo('tabs.news');
               }
             }
           ]
         });
-        console.log('everything workin great');
 
       }else {
         $ionicLoading.hide();
-        console.log('password did not match');
         $scope.signUpErrorShow = true;
         $scope.signUpErrorMsg = "Error al confirmar contraseña";
       }
     }else {
       $ionicLoading.hide();
-      console.log('Falta espacio requierido');
       $scope.signUpErrorShow = true;
       $scope.signUpErrorMsg = "Falta espacio requerido";
     }
   };
 
   $scope.signIn = function (user) {
+    $scope.signInErrorShow = false;
     if (user && user.email && user.pwdForLogin) {
       $ionicLoading.show({
-        template: 'Signing In...'
+        template: 'Ingresando...'
       });
       auth.$authWithPassword({
         email: user.email,
@@ -97,11 +96,16 @@ angular.module('urbanet.app.controllers', [])
         $scope.userLogin = true;
         $ionicLoading.hide();
         $scope.closeModal();
+        $rootScope.$broadcast('');
       }).catch(function (error) {
-        alert("Authentication failed:" + error.message);
+        $ionicPopup.alert({
+          title: 'Error al ingresar',
+          template: "Autenticación Fallida" + error.message
+        });
         $ionicLoading.hide();
       });
     } else
-    console.log("Please enter email and password both");
+    $scope.signInErrorShow = true;
+    $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos'
   };
 });

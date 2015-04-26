@@ -3,7 +3,7 @@
 angular.module('urbanet.app.controllers', [])
 
 .controller("LoginCtrl", function($scope, $rootScope, $ionicLoading, $ionicModal,
-                                  $timeout, $firebaseAuth, $state) {
+                                  $timeout, $firebaseAuth, $state, $ionicPopup) {
 
   var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
       auth = $firebaseAuth(ref);
@@ -27,10 +27,9 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.createUser = function(user) {
     $ionicLoading.show({
-      template: 'Signing Up...'
+      template: 'Creando cuenta'
     });
     $scope.validationError = false;
-    console.log(user);
     console.log("Create User Function called");
     if (user && user.email && user.name ) {
       if (user.password === user.confirm ) {
@@ -39,18 +38,32 @@ angular.module('urbanet.app.controllers', [])
           email: user.email,
           password: user.password
         }).then(function (userData) {
-          alert("User created successfully!");
           ref.child("users").child(userData.uid).set({
             email: user.email,
             displayName: user.name
           });
           $ionicLoading.hide();
+          console.log('everything workin great with popup');
         }).catch(function (error) {
           alert("Error: " + error);
           $ionicLoading.hide();
         });
-
+        $ionicLoading.hide();
+        $ionicPopup.show({
+          template: 'Cuenta creada exitosamente',
+          scope: $scope,
+          buttons: [
+            {
+              text: 'Aceptar',
+              type: 'button-positive',
+              onTap: function() {
+              console.log('clicked aceptar');  
+              }
+            }
+          ]
+        });
         console.log('everything workin great');
+
       }else {
         $ionicLoading.hide();
         console.log('password did not match');

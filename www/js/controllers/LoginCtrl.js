@@ -26,24 +26,10 @@ angular.module('urbanet.app.controllers', [])
   };
 
   $scope.createUser = function(user) {
-    var accCreatedPopup = $ionicPopup.show({
-          template: 'Cuenta creada exitosamente',
-          scope: $scope,
-          buttons: [
-            {
-              text: 'Aceptar',
-              type: 'button-positive',
-              onTap: function() {
-                $state.transitionTo('tabs.news');
-              }
-            }
-          ]
-      });
     $ionicLoading.show({
       template: 'Creando cuenta'
     });
     $scope.validationError = false;
-    console.log(user);
     console.log("Create User Function called");
     if (user && user.email && user.name ) {
       if (user.password === user.confirm ) {
@@ -57,12 +43,25 @@ angular.module('urbanet.app.controllers', [])
             displayName: user.name
           });
           $ionicLoading.hide();
+          console.log('everything workin great with popup');
         }).catch(function (error) {
           alert("Error: " + error);
           $ionicLoading.hide();
         });
         $ionicLoading.hide();
-        accCreatedPopup;
+        $ionicPopup.show({
+          template: 'Cuenta creada exitosamente',
+          scope: $scope,
+          buttons: [
+            {
+              text: 'Aceptar',
+              type: 'button-positive',
+              onTap: function() {
+              console.log('clicked aceptar');  
+              }
+            }
+          ]
+        });
         console.log('everything workin great');
 
       }else {

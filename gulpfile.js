@@ -26,7 +26,7 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  livereload.listen();
+  // livereload.listen();
   gulp.watch(paths.js, ['compress-js']);
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.templates).on('change', function(file) {

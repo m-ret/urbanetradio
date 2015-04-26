@@ -27,28 +27,31 @@
   </head>
 
   <body ng-app="urbanet.app" class="urbanet-base">
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-dark">
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
-    <ion-header-bar class="bar-subheader">
+    <ion-header-bar class="bar-subheader index-subheader">
       <audio-play>
         <audio class="player">
           <source src="http://fire.wavestreamer.com:9711/UrbanetRadio"/>
         </audio>
-        <button class="button button-clear button-dark"
+        <button class="button button-clear button-light"
                 ng-click="playMusic()"
                 ng-hide="!playOrPause">
           <i class="fa fa-play fa-lg"></i>
         </button>
-        <button class="button button-clear button-dark"
+        <button class="button button-clear button-light"
                 ng-click="stopMusic()"
                 ng-show="!playOrPause">
           <i class="fa fa-pause fa-lg"></i>
         </button>
-        <input type="range" ng-change="changeVolume($event)"
-               ng-model="volume"step="0.1" min="0" max="1">
+<!--         <input type="range" ng-change="changeVolume($event)"
+               ng-model="volume" step="0.1" min="0" max="1"> -->
       </audio-play>
+      <div>
+        <p class="audio-title">Urbanet Radio, Streaming en vivo</p>
+      </div>
     </ion-header-bar>
     <ion-nav-view></ion-nav-view>
   </body>

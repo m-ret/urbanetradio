@@ -1,0 +1,36 @@
+// Colors array.
+$colors        :
+  cobalt-blue #0047ab,
+  aero #7cb9e8,
+  golden-poppy #fcc200,
+  jasmine #f8de7e,
+  nieve #fff,
+  plata #ccc,
+  plata-dark #444,
+  night #000,
+  rose #f33;
+
+// Font configuration.
+$font-primary      : 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif, Arial;
+$weight-light: 400;
+$weight-heavy: 600;
+
+$font-sizes        :
+xx-small 12px,
+x-small  14px,
+small    16px,
+x-medium 18px,
+medium   20px,
+large    24px,
+x-large  30px;
+
+// Spacing sizes for padding and margins.
+$spaces :
+xxx-small 2px,
+xx-small 5px,
+x-small  8px,
+small    15px,
+medium   20px,
+x-medium   30px,
+large    45px,
+x-large  60px;

@@ -4,14 +4,14 @@ $fa-font-path:        '../lib/fontawesome/fonts' !default;
 @import '../www/lib/fontawesome/scss/font-awesome';
 
 // Configuration files.
-// @import 'config/theme';x
+@import 'config/theme';
 
 // Modules.
 @import 'modules/functions';
 
 // Layout.
 @import 'layout/common';
-// @import 'layout/header';
+@import 'layout/tabpromotions';
 // @import 'layout/content';
 // @import 'layout/footer';
 // @import 'layout/sports';

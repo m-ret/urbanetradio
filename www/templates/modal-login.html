@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view class="login-modal">
   <ion-header-bar class="capilleira-bar-header">
     <h1 class="title">Ingresá</h1>
     <div class="buttons">
@@ -17,8 +17,13 @@
           <input type="password" ng-model="user.pwdForLogin">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" ng-click="signIn(user)">
+          <button class="button button-block signup-button" ng-click="signIn(user)">
             Entrar
+          </button>
+        </label>
+        <label class="item">
+          <button class="button button-block signup-button" ng-click="logOut(user)">
+            Salir
           </button>
         </label>
         <label class="item item-text-wrap text-center" ng-if="signInErrorShow">

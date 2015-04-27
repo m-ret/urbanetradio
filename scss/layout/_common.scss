@@ -5,6 +5,11 @@
     text-align: center;
   }
 
+  .dark-bg {
+    background: get-color(plata-dark);
+    color: get-color(nieve);
+  }
+
   .edges {
     border-radius: 0;
     margin-left: 0;
@@ -19,4 +24,18 @@
   textarea {
     resize: none;
   }
+
+  .signup-button {
+    background: get-color(golden-poppy);
+    border-color: get-color(night);
+    color: get-color(night);
+  }
+
+  .index-subheader {
+    background: get-color(night);
+    color: get-color(golden-poppy);
+    display: inline-flex;
+    line-height: 2;
+  }
+
 }

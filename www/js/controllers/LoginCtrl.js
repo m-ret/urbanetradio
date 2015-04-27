@@ -112,8 +112,8 @@ angular.module('urbanet.app.controllers', [])
     $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos'
   };
 
-  $scope.logOut = function(user) {
-    console.log(user);
+  $scope.logOut = function() {
+    console.log();
     ref.unauth();
   };
 

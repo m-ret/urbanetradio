@@ -73,6 +73,16 @@ angular.module('urbanet.app', ['ionic',
           controller: 'LoginCtrl'
         }
       }
+    })
+
+    .state('tabs.about-us', {
+      url: '/about-us',
+      views: {
+        'about-us': {
+          templateUrl: 'templates/tab-about.html',
+          controller: 'AboutCtrl'
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/tabs/news');

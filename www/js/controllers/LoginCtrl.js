@@ -80,13 +80,16 @@ angular.module('urbanet.app.controllers', [])
     $scope.signInErrorShow = false;
     if (user && user.email && user.pwdForLogin) {
       $ionicLoading.show({
-        template: 'Ingresando...'
+        template: 'Ingresando...<br>'+
+                  '<ion-spinner class="spinner-assertive"'+
+                  'icon="android"></ion-spinner>',
+        duration: 1000
       });
       auth.$authWithPassword({
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
-        console.log("Logged in as:" + authData.uid);
+        console.log("Logged in as:" + authData.password.email);
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();
           $scope.$apply(function () {
@@ -108,4 +111,10 @@ angular.module('urbanet.app.controllers', [])
     $scope.signInErrorShow = true;
     $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos'
   };
+
+  $scope.logOut = function(user) {
+    console.log(user);
+    ref.unauth();
+  };
+
 });

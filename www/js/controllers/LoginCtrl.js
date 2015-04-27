@@ -31,10 +31,8 @@ angular.module('urbanet.app.controllers', [])
       template: 'Creando cuenta'
     });
     $scope.validationError = false;
-    console.log("Create User Function called");
     if (user && user.email && user.name ) {
       if (user.password === user.confirm ) {
-
         auth.$createUser({
           email: user.email,
           password: user.password
@@ -44,26 +42,28 @@ angular.module('urbanet.app.controllers', [])
             displayName: user.name
           });
           $ionicLoading.hide();
+          $ionicPopup.show({
+            template: 'Cuenta creada exitosamente',
+            scope: $scope,
+            buttons: [
+              {
+                text: 'Aceptar',
+                type: 'button-positive',
+                onTap: function() {
+                  $state.transitionTo('tabs.news');
+                }
+              }
+            ]
+          });
+
           console.log('everything workin great with popup');
         }).catch(function (error) {
-          alert("Error: " + error);
-          $ionicLoading.hide();
+            $scope.signUpErrorShow = true;
+            $scope.signUpErrorMsg = 'E-mail ya esta registrado ' + error;
+            $ionicLoading.hide();
         });
         $ionicLoading.hide();
-        $ionicPopup.show({
-          template: 'Cuenta creada exitosamente',
-          scope: $scope,
-          buttons: [
-            {
-              text: 'Aceptar',
-              type: 'button-positive',
-              onTap: function() {
-                $state.transitionTo('tabs.news');
-              }
-            }
-          ]
-        });
-
+        console.log('here2');
       }else {
         $ionicLoading.hide();
         $scope.signUpErrorShow = true;
@@ -98,14 +98,12 @@ angular.module('urbanet.app.controllers', [])
         $scope.closeModal();
         $rootScope.$broadcast('');
       }).catch(function (error) {
-        $ionicPopup.alert({
-          title: 'Error al ingresar',
-          template: "Autenticación Fallida" + error.message
-        });
+        $scope.signInErrorMsg = error.message;
+        $scope.signInErrorShow = true;
         $ionicLoading.hide();
       });
     } else
     $scope.signInErrorShow = true;
-    $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos'
+    $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos';
   };
 });

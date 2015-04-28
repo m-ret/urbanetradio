@@ -14,14 +14,16 @@
     </div>
     <div class="list">
       <div class="item">
-        {{}}
+        Nomre: <span class="text-center">{{::userDisplayInfo.name}}</span>
       </div>
       <div class="item">
-        {{}}
+        E-mail: {{::userDisplayInfo.email}}
       </div>
-      <button class="item button button-block button-assertive" ng-click="logOut()">
+      <div class="item">
+      <button class="button button-block button-assertive" ng-click="logOut()">
         Cerrar Sesión
       </button>
+      </div>
     </div>
   </ion-content>
 </ion-view>

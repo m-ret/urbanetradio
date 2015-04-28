@@ -32,7 +32,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
-  //$scope.userDisplayInfo = [];
+  $scope.userDisplayInfo = {};
   //$scope.showSignButtons = true;
 
   $scope.openModal = function(index) {
@@ -124,6 +124,11 @@ angular.module('urbanet.app.controllers', [])
           $scope.$apply(function () {
             $rootScope.name = val;
             console.log('log3', $rootScope.name);
+            //$scope.userDisplayInfo.push($rootScope.name);
+            $scope.userDisplayInfo.name = $rootScope.name.displayName;
+            $scope.userDisplayInfo.email = $rootScope.name.email;
+            console.log('here1', $scope.userDisplayInfo);
+
           });
         });
         $scope.userLogin = true;
@@ -143,6 +148,7 @@ angular.module('urbanet.app.controllers', [])
   $scope.logOut = function() {
     console.log('login out');
     ref.unauth();
+    console.log('here2', $scope.userDisplayInfo);
   };
 
 });

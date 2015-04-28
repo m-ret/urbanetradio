@@ -2,7 +2,7 @@
 
 angular.module('urbanet.app.controllers', [])
 
-.controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal,
+.controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal, $rootScope,
                                   $timeout, $firebaseAuth, $state, $ionicPopup) {
 
   var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
@@ -32,6 +32,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
+  //$scope.showSignButtons = true;
 
   $scope.openModal = function(index) {
     if(index == 1) {
@@ -121,6 +122,7 @@ angular.module('urbanet.app.controllers', [])
         $scope.userLogin = true;
         $ionicLoading.hide();
         $scope.closeModal();
+        $scope.showSignButtons = true;
       }).catch(function (error) {
         $scope.signInErrorMsg = error.message;
         $scope.signInErrorShow = true;

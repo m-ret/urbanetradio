@@ -28,23 +28,22 @@ angular.module('urbanet.app.controllers', [])
     animation: 'slide-in-up'
   }).then(function(modal) {
       $scope.oModal2 = modal;
-    });;
+    });
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
 
   $scope.openModal = function(index) {
     if(index == 1) {
-     $scope.oModal1.show(); 
+     $scope.oModal1.show();
     }else {
-    $scope.oModal1.show();
-    $scope.modal.show(); 
+    $scope.oModal2.show();
     }
   };
 
   $scope.closeModal = function(index) {
     if(index == 1) {
-     $scope.oModal1.hide(); 
+     $scope.oModal1.hide();
     }else {
       $scope.oModal2.hide();
 

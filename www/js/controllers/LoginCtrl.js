@@ -112,7 +112,6 @@ angular.module('urbanet.app.controllers', [])
         duration: 1000
       });
       auth.$authWithPassword({
-        name: user.name,
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {

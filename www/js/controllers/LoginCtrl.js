@@ -2,7 +2,7 @@
 
 angular.module('urbanet.app.controllers', [])
 
-.controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal,
+.controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal, $rootScope,
                                   $timeout, $firebaseAuth, $state, $ionicPopup) {
 
   var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
@@ -58,12 +58,15 @@ angular.module('urbanet.app.controllers', [])
     if (user && user.email && user.name ) {
       if (user.password === user.confirm ) {
         auth.$createUser({
+          name: user.name,
           email: user.email,
-          password: user.password
+          password: user.password,
+          confirmPass: user.confirm
         }).then(function (userData) {
           ref.child("users").child(userData.uid).set({
-            email: user.email,
-            displayName: user.name
+            name: user.name,
+            email: user.email
+            // displayName: user.name
           });
           $ionicLoading.hide();
           $ionicPopup.show({
@@ -100,6 +103,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signIn = function (user) {
     $scope.signInErrorShow = false;
+    console.log(user);
     if (user && user.email && user.pwdForLogin) {
       $ionicLoading.show({
         template: 'Ingresando...<br>'+
@@ -108,6 +112,7 @@ angular.module('urbanet.app.controllers', [])
         duration: 1000
       });
       auth.$authWithPassword({
+        name: user.name,
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
@@ -115,7 +120,8 @@ angular.module('urbanet.app.controllers', [])
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();
           $scope.$apply(function () {
-            $rootScope.displayName = val;
+            $rootScope.name = val;
+            console.log($rootScope.name);
           });
         });
         $scope.userLogin = true;

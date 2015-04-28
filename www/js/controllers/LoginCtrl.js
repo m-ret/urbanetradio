@@ -34,7 +34,6 @@ angular.module('urbanet.app.controllers', [])
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
   $scope.userDisplayInfo = {};
-  //$scope.showSignButtons = true;
 
   $scope.openModal = function(index) {
     if(index == 1) {
@@ -85,6 +84,7 @@ angular.module('urbanet.app.controllers', [])
               }
             ]
           });
+          $scope.closeModal(2);
         }).catch(function (error) {
             $scope.signUpErrorShow = true;
             $scope.signUpErrorMsg = 'E-mail ya esta registrado ' + error;
@@ -123,11 +123,8 @@ angular.module('urbanet.app.controllers', [])
           var val = snapshot.val();
           $scope.$apply(function () {
             $rootScope.name = val;
-            console.log('log3', $rootScope.name);
-            //$scope.userDisplayInfo.push($rootScope.name);
             $scope.userDisplayInfo.name = $rootScope.name.displayName;
             $scope.userDisplayInfo.email = $rootScope.name.email;
-            console.log('here1', $scope.userDisplayInfo);
 
           });
         });

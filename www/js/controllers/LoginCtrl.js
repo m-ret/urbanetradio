@@ -32,6 +32,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
+  //$scope.userDisplayInfo = [];
   //$scope.showSignButtons = true;
 
   $scope.openModal = function(index) {
@@ -122,7 +123,7 @@ angular.module('urbanet.app.controllers', [])
           var val = snapshot.val();
           $scope.$apply(function () {
             $rootScope.name = val;
-            console.log($rootScope.name);
+            console.log('log3', $rootScope.name);
           });
         });
         $scope.userLogin = true;

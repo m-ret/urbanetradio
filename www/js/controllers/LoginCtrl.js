@@ -112,6 +112,7 @@ angular.module('urbanet.app.controllers', [])
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
+        authData.password.email
         console.log("Logged in as:" + authData.password.email);
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();

@@ -5,9 +5,9 @@ angular.module('urbanet.app.controllers', [])
 .controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal, $rootScope,
                                   $timeout, $firebaseAuth, $state, $ionicPopup) {
 
-  var ref = new Firebase('https://urbanetapp.firebaseio.com/');
-      $scope.auth = $firebaseAuth(ref);
-      $scope.authData = ref.getAuth();
+  var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
+      auth = $firebaseAuth(ref),
+      authData = ref.getAuth();
 
   $ionicModal.fromTemplateUrl('templates/modal-login.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
@@ -114,11 +114,10 @@ angular.module('urbanet.app.controllers', [])
                   'icon="android"></ion-spinner>',
         duration: 1000
       });
-      $scope.auth.$authWithPassword({
+      auth.$authWithPassword({
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
-        authData.password.email
         console.log("Logged in as:" + authData.password.email);
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();
@@ -134,7 +133,7 @@ angular.module('urbanet.app.controllers', [])
         });
         $scope.userLogin = true;
         $ionicLoading.hide();
-        $scope.closeModal();
+        $scope.closeModal(1);
         $scope.showSignButtons = true;
       }).catch(function (error) {
         $scope.signInErrorMsg = error.message;
@@ -147,6 +146,7 @@ angular.module('urbanet.app.controllers', [])
   };
 
   function authDataCallback(authData) {
+    $scope.authData = authData;
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
     } else {

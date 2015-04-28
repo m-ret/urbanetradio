@@ -33,6 +33,8 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
+  //$scope.userDisplayInfo = [];
+  //$scope.showSignButtons = true;
 
   $scope.openModal = function(index) {
     if(index == 1) {
@@ -116,17 +118,19 @@ angular.module('urbanet.app.controllers', [])
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
+        authData.password.email
         console.log("Logged in as:" + authData.password.email);
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();
           $scope.$apply(function () {
             $rootScope.name = val;
-            console.log($rootScope.name);
+            console.log('log3', $rootScope.name);
           });
         });
         $scope.userLogin = true;
         $ionicLoading.hide();
         $scope.closeModal();
+        $scope.showSignButtons = true;
       }).catch(function (error) {
         $scope.signInErrorMsg = error.message;
         $scope.signInErrorShow = true;

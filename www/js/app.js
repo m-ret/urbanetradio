@@ -65,15 +65,26 @@ angular.module('urbanet.app', ['ionic',
       }
     })
 
-    .state('tabs.sign-signup', {
-      url: '/signup',
+    // .state('tabs.sign-signup', {
+    //   url: '/signup',
+    //   views: {
+    //     'signup': {
+    //       templateUrl: 'templates/tab-signup.html',
+    //       controller: 'LoginCtrl'
+    //     }
+    //   }
+    // })
+
+    .state('tabs.admin-accnt', {
+      url: '/admin-accnt',
       views: {
-        'signup': {
-          templateUrl: 'templates/tab-signup.html',
+        'admin-accnt': {
+          templateUrl: 'templates/tab-admin-account.html',
           controller: 'LoginCtrl'
         }
       }
     })
+
 
     .state('tabs.about-us', {
       url: '/about-us',

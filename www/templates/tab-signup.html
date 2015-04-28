@@ -1,4 +1,10 @@
-<ion-view view-title="Crear Cuenta" class="tab-singup">
+<ion-modal-view class="login-modal">
+  <ion-header-bar class="capilleira-bar-header">
+    <h1 class="title tab-singup">Crear Cuenta</h1>
+    <div class="buttons">
+      <button class="button button-clear button-dark left" ng-click="closeModal()"><i class="ion-close-round"></i></button>
+    </div>
+  </ion-header-bar>
   <ion-content>
     <form name="sign-up">
       <div class="list">
@@ -28,9 +34,6 @@
 
         </label>
       </div>
-
-
-
     </form>
   </ion-content>
-</ion-view>
+</ion-modal-view>

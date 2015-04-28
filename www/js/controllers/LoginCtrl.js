@@ -2,24 +2,44 @@
 
 angular.module('urbanet.app.controllers', [])
 
-.controller("LoginCtrl", function($scope, $rootScope, $ionicLoading, $ionicModal,
+.controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal,
                                   $timeout, $firebaseAuth, $state, $ionicPopup) {
 
   var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
       auth = $firebaseAuth(ref);
 
-  $ionicModal.fromTemplateUrl('templates/modal-login.html', function($ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/modal-login.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
   }, {
+    id: 'signIn',
     scope: $scope,
+    backdropClickToClose: false,
     animation: 'slide-in-up'
-  });
+  }).then(function(modal) {
+      $scope.oSignIn = modal;
+    });;
+
+  $ionicModal.fromTemplateUrl('templates/tab-signup.html', function($scope, $ionicModal) {
+    $scope.modal = $ionicModal;
+  }, {
+    id: 'signUp',
+    scope: $scope,
+    backdropClickToClose: false,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+      $scope.oSignUp = modal;
+    });;
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
 
-  $scope.openModal = function() {
-    $scope.modal.show();
+  $scope.openModal = function(index) {
+    if(index == 1) {
+     $scope.oSignIn.show(); 
+    }else {
+    $scope.oSignUp.show();
+    $scope.modal.show(); 
+    }
   };
 
   $scope.closeModal = function() {
@@ -55,8 +75,6 @@ angular.module('urbanet.app.controllers', [])
               }
             ]
           });
-
-          console.log('everything workin great with popup');
         }).catch(function (error) {
             $scope.signUpErrorShow = true;
             $scope.signUpErrorMsg = 'E-mail ya esta registrado ' + error;
@@ -99,7 +117,6 @@ angular.module('urbanet.app.controllers', [])
         $scope.userLogin = true;
         $ionicLoading.hide();
         $scope.closeModal();
-        $rootScope.$broadcast('');
       }).catch(function (error) {
         $scope.signInErrorMsg = error.message;
         $scope.signInErrorShow = true;
@@ -111,7 +128,7 @@ angular.module('urbanet.app.controllers', [])
   };
 
   $scope.logOut = function() {
-    console.log();
+    console.log('login out');
     ref.unauth();
   };
 

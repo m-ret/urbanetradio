@@ -35,7 +35,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.openModal = function(index) {
     if(index == 1) {
-     $scope.oModal1.show(); 
+     $scope.oModal1.show();
     }else {
     $scope.oModal2.show();
     }
@@ -43,7 +43,7 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.closeModal = function(index) {
     if(index == 1) {
-     $scope.oModal1.hide(); 
+     $scope.oModal1.hide();
     }else {
       $scope.oModal2.hide();
 

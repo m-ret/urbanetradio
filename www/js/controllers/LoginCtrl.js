@@ -11,23 +11,23 @@ angular.module('urbanet.app.controllers', [])
   $ionicModal.fromTemplateUrl('templates/modal-login.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
   }, {
-    id: 'signIn',
+    id: '1',
     scope: $scope,
     backdropClickToClose: false,
     animation: 'slide-in-up'
   }).then(function(modal) {
-      $scope.oSignIn = modal;
+      $scope.oModal1 = modal;
     });;
 
   $ionicModal.fromTemplateUrl('templates/tab-signup.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
   }, {
-    id: 'signUp',
+    id: '2',
     scope: $scope,
     backdropClickToClose: false,
     animation: 'slide-in-up'
   }).then(function(modal) {
-      $scope.oSignUp = modal;
+      $scope.oModal2 = modal;
     });;
 
   $scope.signUpErrorShow = false;
@@ -35,15 +35,20 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.openModal = function(index) {
     if(index == 1) {
-     $scope.oSignIn.show(); 
+     $scope.oModal1.show(); 
     }else {
-    $scope.oSignUp.show();
+    $scope.oModal1.show();
     $scope.modal.show(); 
     }
   };
 
-  $scope.closeModal = function() {
-    $scope.modal.hide();
+  $scope.closeModal = function(index) {
+    if(index == 1) {
+     $scope.oModal1.hide(); 
+    }else {
+      $scope.oModal2.hide();
+
+    }
   };
 
   $scope.createUser = function(user) {

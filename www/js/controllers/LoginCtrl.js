@@ -5,8 +5,9 @@ angular.module('urbanet.app.controllers', [])
 .controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal, $rootScope,
                                   $timeout, $firebaseAuth, $state, $ionicPopup) {
 
-  var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
-      auth = $firebaseAuth(ref);
+  var ref = new Firebase('https://urbanetapp.firebaseio.com/');
+      $scope.auth = $firebaseAuth(ref);
+      $scope.authData = ref.getAuth();
 
   $ionicModal.fromTemplateUrl('templates/modal-login.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
@@ -113,7 +114,7 @@ angular.module('urbanet.app.controllers', [])
                   'icon="android"></ion-spinner>',
         duration: 1000
       });
-      auth.$authWithPassword({
+      $scope.auth.$authWithPassword({
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
@@ -145,8 +146,17 @@ angular.module('urbanet.app.controllers', [])
     $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos';
   };
 
+  function authDataCallback(authData) {
+    if (authData) {
+      console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    } else {
+      console.log("User is logged out");
+    }
+  };
+  // Register the callback to be fired every time auth state changes
+  ref.onAuth(authDataCallback);
+
   $scope.logOut = function() {
-    console.log('login out');
     ref.unauth();
     console.log('here2', $scope.userDisplayInfo);
   };

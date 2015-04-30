@@ -1,25 +1,38 @@
-<ion-view view-title="Administrar cuenta" class="tab-singup">
+<ion-view view-title="Cuenta de Usuario" class="tab-singup">
   <ion-content>
     <div class="list" ng-hide="authData.token">
-      <div class="item text-center">
-        <button class="button button-block signup-button" ng-click="openModal(1)">
+    <div class="item item-image">
+      <img src="/img/ur.jpg">
+    </div>
+      <div class="padding-left padding right text-center">
+        <button class="button button-small button-block signup-button" ng-click="openModal(1)">
           Ingresar
         </button>
-      </div>
-      <div class="item text-center">
-        <button class="button button-block signup-button" ng-click="openModal(2)">
+        <button class="button button-small button-block signup-button" ng-click="openModal(2)">
           Crear cuenta
         </button>
       </div>
     </div>
     <div class="list" ng-show="authData.token">
-      <div class="item">
-        Nomre: <span class="text-center">{{::authData.provider}}</span>
+      <div class="item item-divider">
+        Nombre de Usuario:
       </div>
       <div class="item">
-        E-mail: {{::userDisplayInfo.email}}
+        <i class="fa fa-user"></i></i>{{::userDisplayInfo.name}}
+      </div>
+      <div class="item item-divider">
+        E-mail:
       </div>
       <div class="item">
+        <i class="fa fa-at"></i>{{::userDisplayInfo.email}}
+      </div>
+      <div class="text-center padding">
+        <button class="button button-energized padding ">
+          <h4>Buzón </h4> <i class="fa fa-envelope-o fa-lg"></i>
+        </button>
+
+      </div>
+      <div class="padding">
       <button class="button button-block button-assertive" ng-click="logOut()">
         Cerrar Sesión
       </button>

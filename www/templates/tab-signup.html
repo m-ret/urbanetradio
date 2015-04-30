@@ -8,16 +8,20 @@
   <ion-content>
     <form name="sign-up">
       <div class="list">
-        <label class="item item-input">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Nombre Completo</span>
           <input type="text" placeholder="Nombre completo" ng-model="user.name" required="required">
         </label>
-        <label class="item item-input">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">E-mail</span>
           <input type="email" placeholder="E-mail" ng-model="user.email" required="required">
         </label>
-        <label class="item item-input">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Contraseña</span>
           <input type="password" placeholder="Contraseña" ng-model="user.password" required="required">
         </label>
-        <label class="item item-input">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Confirmar contraseña</span>
           <input type="password" placeholder="Confirmar Contraseña" ng-model="user.confirm" required="required">
         </label>
         <label class="item">

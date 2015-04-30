@@ -8,13 +8,13 @@
   <ion-content>
     <form name="login">
       <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="user.email">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">E-mail</span>
+          <input placeholder="E-mail" type="text" ng-model="user.email">
         </label>
-        <label class="item item-input">
+        <label class="item item-input item-floating-label">
           <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="user.pwdForLogin">
+          <input placeholder="Password" type="password" ng-model="user.pwdForLogin">
         </label>
         <label class="item">
           <button class="button button-block signup-button" ng-click="signIn(user)">

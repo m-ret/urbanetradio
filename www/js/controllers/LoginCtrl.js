@@ -17,8 +17,8 @@ angular.module('urbanet.app.controllers', [])
     backdropClickToClose: false,
     animation: 'slide-in-up'
   }).then(function(modal) {
-      $scope.oModal1 = modal;
-    });;
+    $scope.oModal1 = modal;
+  });
 
   $ionicModal.fromTemplateUrl('templates/tab-signup.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
@@ -28,8 +28,8 @@ angular.module('urbanet.app.controllers', [])
     backdropClickToClose: false,
     animation: 'slide-in-up'
   }).then(function(modal) {
-      $scope.oModal2 = modal;
-    });
+    $scope.oModal2 = modal;
+  });
 
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
@@ -68,8 +68,8 @@ angular.module('urbanet.app.controllers', [])
         }).then(function (userData) {
           ref.child("users").child(userData.uid).set({
             name: user.name,
-            email: user.email
-            // displayName: user.name
+            email: user.email,
+            displayName: user.name
           });
           $ionicLoading.hide();
           $ionicPopup.show({
@@ -91,7 +91,6 @@ angular.module('urbanet.app.controllers', [])
             $ionicLoading.hide();
         });
         $ionicLoading.hide();
-        console.log('here2');
       }else {
         $ionicLoading.hide();
         $scope.signUpErrorShow = true;
@@ -106,11 +105,10 @@ angular.module('urbanet.app.controllers', [])
 
   $scope.signIn = function (user) {
     $scope.signInErrorShow = false;
-    console.log(user);
     if (user && user.email && user.pwdForLogin) {
       $ionicLoading.show({
         template: 'Ingresando...<br>'+
-                  '<ion-spinner class="spinner-assertive"'+
+                  '<ion-spinner class="spinner-energized"'+
                   'icon="android"></ion-spinner>',
         duration: 1000
       });
@@ -118,18 +116,15 @@ angular.module('urbanet.app.controllers', [])
         email: user.email,
         password: user.pwdForLogin
       }).then(function (authData) {
-        console.log("Logged in as:" + authData.password.email);
         ref.child("users").child(authData.uid).once('value', function (snapshot) {
           var val = snapshot.val();
           $scope.$apply(function () {
             $rootScope.name = val;
-            console.log('log3', $rootScope.name);
             //$scope.userDisplayInfo.push($rootScope.name);
             $scope.userDisplayInfo.name = $rootScope.name.displayName;
             $scope.userDisplayInfo.email = $rootScope.name.email;
-            console.log('here1', $scope.userDisplayInfo);
-
           });
+          console.log(user);
         });
         $scope.userLogin = true;
         $ionicLoading.hide();
@@ -147,6 +142,7 @@ angular.module('urbanet.app.controllers', [])
 
   function authDataCallback(authData) {
     $scope.authData = authData;
+    console.log($scope.authData);
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
     } else {
@@ -157,8 +153,13 @@ angular.module('urbanet.app.controllers', [])
   ref.onAuth(authDataCallback);
 
   $scope.logOut = function() {
-    ref.unauth();
-    console.log('here2', $scope.userDisplayInfo);
+    $ionicLoading.show({
+      template: 'Cerrando sesión...<br>'+
+                '<ion-spinner class="spinner-energized"'+
+                'icon="android"></ion-spinner>',
+      duration: 1000
+    });
+    ref.unauth()
+    $state.transitionTo('tabs.news');
   };
-
 });

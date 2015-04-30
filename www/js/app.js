@@ -4,6 +4,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('urbanet.app', ['ionic',
                                'firebase',
+                               'ngCookies',
                                'urbanet.app.directives',
                                'urbanet.app.controllers',
                                'urbanet.app.services'])

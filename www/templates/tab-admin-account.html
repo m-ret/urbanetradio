@@ -1,41 +1,60 @@
 <ion-view view-title="Cuenta de Usuario" class="tab-singup">
   <ion-content>
-    <div class="list" ng-hide="authData.token">
-    <div class="item item-image">
-      <img src="/img/ur.jpg">
-    </div>
-      <div class="padding-left padding right text-center">
-        <button class="button button-small button-block signup-button" ng-click="openModal(1)">
-          Ingresar
-        </button>
-        <button class="button button-small button-block signup-button" ng-click="openModal(2)">
-          Crear cuenta
+    <div ng-hide="authData.token">
+      <form name="login">
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Correo electrónico</span>
+            <input placeholder="Correo electrónico" type="text" ng-model="user.email">
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Contraseña</span>
+            <input placeholder="Contraseña" type="password" ng-model="user.pwdForLogin">
+          </label>
+          <label class="item">
+            <button class="button button-block signup-button" ng-click="signIn(user)">
+              Entrar
+            </button>
+          </label>
+          <label class="item item-text-wrap text-center" ng-if="signInErrorShow">
+            <i class="icon ion-alert-circled assertive"></i>
+            <span>{{signInErrorMsg}}</span>
+          </label>
+        </div>
+      </form>
+      <div class="padding">
+        <p class="text-center positive">¿No tienes cuenta?</p>
+        <button class="button button-block button-dark"
+                ng-click="openModal(1)">
+          Regístrate
         </button>
       </div>
     </div>
     <div class="list" ng-show="authData.token">
       <div class="item item-divider">
-        Nombre de Usuario:
+        <i class="fa fa-user"></i> Nombre de Usuario
       </div>
       <div class="item">
-        <i class="fa fa-user"></i></i>{{::userDisplayInfo.name}}
+        {{::userDisplayInfoName}}
       </div>
       <div class="item item-divider">
-        E-mail:
+        <i class="fa fa-at"></i> E-mail
       </div>
       <div class="item">
-        <i class="fa fa-at"></i>{{::userDisplayInfo.email}}
+        {{::userDisplayInfoEmail}}
       </div>
       <div class="text-center padding">
-        <button class="button button-energized padding ">
-          <h4>Buzón </h4> <i class="fa fa-envelope-o fa-lg"></i>
-        </button>
+
+          <i class="positive fa fa-envelope-o fa-2x">
+            <span class="assertive">7</span>
+          </i>
 
       </div>
       <div class="padding">
-      <button class="button button-block button-assertive" ng-click="logOut()">
-        Cerrar Sesión
-      </button>
+        <button class="button button-block button-assertive"
+                ng-click="logOut()">
+          Cerrar Sesión
+        </button>
       </div>
     </div>
   </ion-content>

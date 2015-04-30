@@ -3,13 +3,13 @@
 angular.module('urbanet.app.controllers', [])
 
 .controller("LoginCtrl", function($scope, $ionicLoading, $ionicModal, $rootScope,
-                                  $timeout, $firebaseAuth, $state, $ionicPopup) {
+                                  $timeout, $firebaseAuth, $state, $ionicPopup, $cookieStore) {
 
   var ref = new Firebase('https://urbanetapp.firebaseio.com/'),
       auth = $firebaseAuth(ref),
       authData = ref.getAuth();
 
-  $ionicModal.fromTemplateUrl('templates/modal-login.html', function($scope, $ionicModal) {
+  $ionicModal.fromTemplateUrl('templates/tab-signup.html', function($scope, $ionicModal) {
     $scope.modal = $ionicModal;
   }, {
     id: '1',
@@ -20,17 +20,6 @@ angular.module('urbanet.app.controllers', [])
     $scope.oModal1 = modal;
   });
 
-  $ionicModal.fromTemplateUrl('templates/tab-signup.html', function($scope, $ionicModal) {
-    $scope.modal = $ionicModal;
-  }, {
-    id: '2',
-    scope: $scope,
-    backdropClickToClose: false,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.oModal2 = modal;
-  });
-
   $scope.signUpErrorShow = false;
   $scope.signInErrorShow = false;
   $scope.userDisplayInfo = {};
@@ -38,17 +27,12 @@ angular.module('urbanet.app.controllers', [])
   $scope.openModal = function(index) {
     if(index == 1) {
      $scope.oModal1.show();
-    }else {
-    $scope.oModal2.show();
     }
   };
 
   $scope.closeModal = function(index) {
     if(index == 1) {
      $scope.oModal1.hide();
-    }else {
-      $scope.oModal2.hide();
-
     }
   };
 
@@ -103,6 +87,12 @@ angular.module('urbanet.app.controllers', [])
     }
   };
 
+  $scope.localStorageInfo = function() {
+    $scope.userDisplayInfoName = $cookieStore.get('username');
+    $scope.userDisplayInfoEmail = $cookieStore.get('email');
+  };
+  $scope.localStorageInfo();
+
   $scope.signIn = function (user) {
     $scope.signInErrorShow = false;
     if (user && user.email && user.pwdForLogin) {
@@ -120,8 +110,10 @@ angular.module('urbanet.app.controllers', [])
           var val = snapshot.val();
           $scope.$apply(function () {
             $rootScope.name = val;
-            $scope.userDisplayInfo.name = $rootScope.name.displayName;
-            $scope.userDisplayInfo.email = $rootScope.name.email;
+            $scope.userDisplayInfoName = $rootScope.name.displayName;
+            $scope.userDisplayInfoEmail = $rootScope.name.email;
+            $cookieStore.put('username', $rootScope.name.displayName);
+            $cookieStore.put('email', $rootScope.name.email);
           });
           console.log(user);
         });
@@ -139,6 +131,7 @@ angular.module('urbanet.app.controllers', [])
     $scope.signInErrorMsg = 'E-mail y Contraseña son requeridos';
   };
 
+  // Register the callback to be fired every time auth state changes
   function authDataCallback(authData) {
     $scope.authData = authData;
     console.log($scope.authData);
@@ -148,7 +141,6 @@ angular.module('urbanet.app.controllers', [])
       console.log("User is logged out");
     }
   };
-  // Register the callback to be fired every time auth state changes
   ref.onAuth(authDataCallback);
 
   $scope.logOut = function() {
@@ -159,6 +151,8 @@ angular.module('urbanet.app.controllers', [])
       duration: 1000
     });
     ref.unauth()
+    $cookieStore.remove('username');
+    $cookieStore.remove('email');
     $state.transitionTo('tabs.news');
   };
 });

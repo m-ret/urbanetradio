@@ -41,7 +41,7 @@ angular.module('urbanet.app.controllers', [])
       template: 'Creando cuenta'
     });
     $scope.validationError = false;
-    if (user && user.email && user.name ) {
+    if (user.email.length >= 8 && user.name.length >=6 ) {
       if (user.password === user.confirm ) {
         auth.$createUser({
           name: user.name,
@@ -80,6 +80,14 @@ angular.module('urbanet.app.controllers', [])
         $scope.signUpErrorShow = true;
         $scope.signUpErrorMsg = "Error al confirmar contraseña";
       }
+    }else if (user.email.length < 8 || user.name.length < 6) {
+      $ionicLoading.hide();
+      $scope.signUpErrorShow = true;
+      if (user.email.length < 8) {
+        $scope.signUpErrorMsg = "E-mail debe ser más largo";
+      }else {
+        $scope.signUpErrorMsg = "Nombre debe ser más largo";
+      }
     }else {
       $ionicLoading.hide();
       $scope.signUpErrorShow = true;
@@ -115,7 +123,6 @@ angular.module('urbanet.app.controllers', [])
             $cookieStore.put('username', $rootScope.name.displayName);
             $cookieStore.put('email', $rootScope.name.email);
           });
-          console.log(user);
         });
         $scope.userLogin = true;
         $ionicLoading.hide();

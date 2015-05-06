@@ -68,7 +68,7 @@ angular.module('urbanet.app.controllers', [])
               }
             ]
           });
-          $scope.closeModal(2);
+          $scope.closeModal(1);
         }).catch(function (error) {
             $scope.signUpErrorShow = true;
             $scope.signUpErrorMsg = 'E-mail ya esta registrado ' + error;

@@ -15,7 +15,6 @@ angular.module('urbanet.app.directives', [])
         scope.playOrPause = false;
         player.play();
       }
-      scope.playMusic();
 
       scope.stopMusic = function() {
         scope.playOrPause = true;

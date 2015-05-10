@@ -6,7 +6,12 @@ angular.module('urbanet.app.controllers')
                                  $ionicLoading,
                                  FreshlyPressed, $stateParams) {
 
-  $scope.posts = [];
+  $ionicLoading.show({
+    template: 'Cargando Noticias...<br>'+
+              '<ion-spinner class="spinner-energized"'+
+              'icon="android"></ion-spinner>',
+    duration: 1000
+  });
 
   $scope.doRefresh = function() {
     $scope.posts = FreshlyPressed.getBlogs($scope);

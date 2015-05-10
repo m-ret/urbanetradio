@@ -5,6 +5,10 @@
     text-align: center;
   }
 
+  .margin-bottom {
+    margin-bottom: 10px;
+  }
+
   .dark-bg {
     background: get-color(plata-dark);
     color: get-color(nieve);
@@ -14,6 +18,10 @@
     border-radius: 0;
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .no-margin {
+    margin: 0;
   }
 
   .spinner-android svg {

@@ -7,6 +7,7 @@ angular.module('urbanet.app', ['ionic',
                                'ngCookies',
                                'urbanet.app.directives',
                                'urbanet.app.controllers',
+                               'urbanet.app.service',
                                'urbanet.app.services'])
 
 // do all the things ionic needs to get going
@@ -45,6 +46,16 @@ angular.module('urbanet.app', ['ionic',
           }
         }
       })
+
+    .state('tabs.post-detail', {
+      url: '/news/:siteId/:postId',
+      views: {
+        'tab-news': {
+          templateUrl: 'templates/tab-post-detail.html',
+          controller: 'PostDetailCtrl'
+        }
+      }
+    })
 
     .state('tabs.promotions', {
       url: '/promotions',
@@ -85,7 +96,6 @@ angular.module('urbanet.app', ['ionic',
         }
       }
     })
-
 
     .state('tabs.about-us', {
       url: '/about-us',

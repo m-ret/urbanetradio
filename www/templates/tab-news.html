@@ -6,38 +6,12 @@
     <div class="item item-image padding-bottom">
       <img src="/img/ur.jpg">
     </div>
-    <ul class="list">
-        <li class="item item-divider text-center dark-bg">
-          <b class="title">Lo que acontece</b>
-        </li>
-    </ul>
-    <div class="list card edges" ng-repeat="news in stories">
-      <div class="item item-text-wraper item-divider">
-        <h2>{{:: news.newsTitle}}</h2>
-        <p>{{:: news.eventDate}}</p>
-      </div>
-      <div class="item item-body">
-        <img class="full-image" ng-src="{{news.eventBanner}}">
-          <!-- <img src="{{news.avatar}}"> -->
-        <p>{{:: news.newsContent}}</p>
-          <!-- <a href="#" class="subdued">9010 Me gusta</a> -->
-          <a href="#" class="button button-small button-dark">Leer más...</a>
-        </p>
-      </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-<!--         <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i>
-          Me gusta
-        </a> -->
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Comentar
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Compartir
-        </a>
-      </div>
+    <div class="list no-margin" ng-repeat="post in posts">
+      <a class="item item-text-wrap"
+         ng-href="#/tabs/news/{{post.site_ID}}/{{post.ID}}">
+        <h2 ng-bind-html="post.title"></h2>
+        <p>{{:: post.date | date}}</p>
+      </a>
     </div>
   </ion-content>
 </ion-view>

@@ -1718,6 +1718,8 @@
 /* Empty. Add your own CSS if you like */
 .urbanet-base .centered {
   text-align: center; }
+.urbanet-base .margin-bottom {
+  margin-bottom: 10px; }
 .urbanet-base .dark-bg {
   background: #444;
   color: #fff; }
@@ -1725,6 +1727,8 @@
   border-radius: 0;
   margin-left: 0;
   margin-right: 0; }
+.urbanet-base .no-margin {
+  margin: 0; }
 .urbanet-base .spinner-android svg {
   width: 60px;
   height: 60px; }
@@ -1742,6 +1746,9 @@
 
 .tab-promotions .item {
   border-width: 0px; }
+
+.tab-news .special-font {
+  font-family: 'Raleway', sans-serif; }
 
 /*
 To customize the look and feel of Ionic, you can override the variables

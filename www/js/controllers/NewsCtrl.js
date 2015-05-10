@@ -2,9 +2,7 @@
 
 angular.module('urbanet.app.controllers')
 
-.controller('NewsCtrl', function($scope,
-                                 $ionicLoading,
-                                 FreshlyPressed, $stateParams) {
+.controller('NewsCtrl', function($scope, $ionicLoading, $stateParams, FreshlyPressed) {
 
   $ionicLoading.show({
     template: 'Cargando Noticias...<br>'+

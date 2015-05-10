@@ -1,6 +1,6 @@
 angular.module('urbanet.app.service', [])
 
-.service('FreshlyPressed', function($http) {
+.service('FreshlyPressed', function($http, $q) {
   return {
 
     getBlogs: function($scope) {
@@ -12,8 +12,8 @@ angular.module('urbanet.app.service', [])
     },
 
     getPostById: function(siteId, postId) {
-      var url ='https://public-api.wordpress.com/rest/v1.1/sites/'+siteId+'/posts/'+postId+'?callback=JSON_CALLBACK'
-      return $http.jsonp(url)
+      var url ='https://public-api.wordpress.com/rest/v1.1/sites/'+siteId+'/posts/'+postId+'?callback=JSON_CALLBACK';
+      return $http.jsonp(url);
     }
   }
 

@@ -1,6 +1,18 @@
 .tab-news {
 
-  .special-font {
-    font-family: 'Raleway', sans-serif;
+  .special-font p,
+  .special-font ul li,
+  .special-font h4 {
+    font : normal;
+    font-family : inherit;
+    font-size : medium;
+    font-style : normal;
+    font-variant : normal;
+    font-weight : normal;
   }
+
+  img {
+    width: 10px;
+  }
+
 }

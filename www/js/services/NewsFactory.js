@@ -5,16 +5,17 @@ angular.module('urbanet.app.service', [])
 
     getBlogs: function($scope) {
       var posts = [];
-      $http.jsonp('https://public-api.wordpress.com/rest/v1.1/freshly-pressed?callback=JSON_CALLBACK')
+      $http.get('http://urbanetradio.com/wp-json/posts')
         .success(function(result) {
-          $scope.posts = result.posts;
-        });
+          $scope.posts = result;
+        })
     },
 
-    getPostById: function(siteId, postId) {
-      var url ='https://public-api.wordpress.com/rest/v1.1/sites/'+siteId+'/posts/'+postId+'?callback=JSON_CALLBACK';
-      return $http.jsonp(url);
+    getPostById: function(postId) {
+      var url ='http://urbanetradio.com/wp-json/posts/'+ postId;
+      return $http.get(url);
     }
+
   }
 
 });

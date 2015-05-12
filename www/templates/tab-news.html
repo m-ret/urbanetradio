@@ -9,10 +9,16 @@
     </div>
     <div class="list no-margin" ng-repeat="post in posts">
       <a class="item item-text-wrap"
-         ng-href="#/tabs/news/{{post.site_ID}}/{{post.ID}}">
+         ng-href="#/tabs/news/{{post.ID}}">
         <h2 ng-bind-html="post.title"></h2>
         <p>{{:: post.date | date}}</p>
       </a>
     </div>
+<!--     <ion-infinite-scroll
+            on-infinite="loadMore()"
+            distance="1%"
+            ng-if="!noMoreItemsAvailable"
+            immediate-check="false">
+     </ion-infinite-scroll> -->
   </ion-content>
 </ion-view>

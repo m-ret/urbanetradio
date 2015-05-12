@@ -48,7 +48,7 @@ angular.module('urbanet.app', ['ionic',
       })
 
     .state('tabs.post-detail', {
-      url: '/news/:siteId/:postId',
+      url: '/news/:postId',
       views: {
         'tab-news': {
           templateUrl: 'templates/tab-post-detail.html',
@@ -109,4 +109,9 @@ angular.module('urbanet.app', ['ionic',
 
   $urlRouterProvider.otherwise('/tabs/news');
 
+})
+
+.run(function($http) {
+  $http.defaults.headers.common.Accept = 'application/json, text/html';
 });
+

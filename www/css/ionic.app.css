@@ -1747,8 +1747,15 @@
 .tab-promotions .item {
   border-width: 0px; }
 
-.tab-news .special-font {
-  font-family: 'Raleway', sans-serif; }
+.tab-news .special-font p, .tab-news .special-font ul li, .tab-news .special-font h4 {
+  font: normal;
+  font-family: inherit;
+  font-size: medium;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal; }
+.tab-news img {
+  width: 10px; }
 
 /*
 To customize the look and feel of Ionic, you can override the variables

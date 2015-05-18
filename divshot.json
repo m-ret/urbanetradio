@@ -2,5 +2,13 @@
   "name": "urbanetradio",
   "root": "www",
   "clean_urls": true,
-  "error_page": "error.html"
+  "error_page": "error.html",
+  "headers": {
+    "/cors-stuff/**": {
+      "Access-Control-Allow-Origin": "*"
+    },
+    "/scripts/**": {
+      "content-type": "text/javascript"
+    }
+  }
 }

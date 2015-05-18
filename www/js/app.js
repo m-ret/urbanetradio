@@ -112,6 +112,7 @@ angular.module('urbanet.app', ['ionic',
 })
 
 .run(function($http) {
-  $http.defaults.headers.common.Accept = 'application/json, text/html';
+  $http.defaults.headers.common.Accept = 'application/json, text/html',
+  'Acess-Allow-Control-Origin: *';
 });
 

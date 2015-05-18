@@ -4,14 +4,15 @@
       on-refresh="doRefresh()"
       refreshing-icon="fa fa-cog fa-spin">
     </ion-refresher>
-    <div class="item item-image padding-bottom">
+    <div class="item item-image polygon">
       <img src="/img/ur.jpg">
     </div>
     <div class="list no-margin" ng-repeat="post in posts">
-      <a class="item item-text-wrap"
+      <a class="item item-text-wrap top-border-non"
          ng-href="#/tabs/news/{{post.ID}}">
-        <h2 ng-bind-html="post.title"></h2>
-        <p>{{:: post.date | date}}</p>
+        <h2><i class="fa fa-paperclip"></i> <span ng-bind-html="post.title"></span></h2>
+        <h2 ng-bind-html="post.excerpt"></h2>
+        <p><i class="fa fa-calendar-o"></i> {{:: post.date | date}}</p>
       </a>
     </div>
 <!--     <ion-infinite-scroll

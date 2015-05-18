@@ -1,5 +1,21 @@
 .tab-news {
 
+  .polygon {
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 65%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0 80%);
+    z-index: 999;
+  }
+
+  .scroll {
+    background: get-color(nieve);
+  }
+
+  .top-border-non {
+    background: get-color(nieve);
+    border-top: 0;
+    color: red;
+  }
+
   .special-font p,
   .special-font ul li,
   .special-font h4 {

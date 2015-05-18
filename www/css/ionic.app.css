@@ -1747,6 +1747,16 @@
 .tab-promotions .item {
   border-width: 0px; }
 
+.tab-news .polygon {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 0 65%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0 80%);
+  z-index: 999; }
+.tab-news .scroll {
+  background: #fff; }
+.tab-news .top-border-non {
+  background: #fff;
+  border-top: 0;
+  color: red; }
 .tab-news .special-font p, .tab-news .special-font ul li, .tab-news .special-font h4 {
   font: normal;
   font-family: inherit;

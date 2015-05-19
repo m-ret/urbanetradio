@@ -1,6 +1,6 @@
 # UrbanetRadio App
 
-# News Music Magazine
+# Music News and Events Magazine 
 
 An Ionic Proyect
 

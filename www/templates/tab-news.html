@@ -1,4 +1,6 @@
-<ion-view view-title="Noticias" class="tab-news">
+<ion-view view-title="Noticias"
+          class="tab-news"
+          hide-back-button="true">
   <ion-content has-header="true">
     <ion-refresher
       on-refresh="doRefresh()"
@@ -11,7 +13,7 @@
       <a class="item item-text-wrap top-border-non"
          ng-href="#/tabs/news/{{post.ID}}">
         <h2><i class="fa fa-paperclip"></i> <span ng-bind-html="post.title"></span></h2>
-        <h2 ng-bind-html="post.excerpt"></h2>
+        <p ng-bind-html="post.excerpt"></p>
         <p><i class="fa fa-calendar-o"></i> {{:: post.date | date}}</p>
       </a>
     </div>

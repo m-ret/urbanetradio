@@ -2,17 +2,10 @@
 
 angular.module('urbanet.app.controllers')
 
-.controller('NewsCtrl', function($scope, $ionicLoading, FreshlyPressed) {
-
-  $ionicLoading.show({
-    template: 'Cargando Noticias...<br>'+
-              '<ion-spinner class="spinner-energized"'+
-              'icon="android"></ion-spinner>',
-    duration: 4000
-  });
+.controller('NewsCtrl', function($scope, $timeout, FreshlyPressed) {
 
   $scope.doRefresh = function() {
-    $scope.posts = FreshlyPressed.getBlogs($scope);
+    FreshlyPressed.getBlogs($scope);
     $scope.$broadcast('scroll.refreshComplete');
   };
   $scope.doRefresh();

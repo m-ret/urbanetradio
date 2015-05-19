@@ -13,7 +13,8 @@ angular.module('urbanet.app.service', [])
                   'icon="android"></ion-spinner>'
       });
 
-      $scope.postsURL = 'http://urbanetradio.com/wp-json/posts?filter[posts_per_page]=25&_jsonp=JSON_CALLBACK';
+      $scope.postsURL = 'http://urbanetradio.com/wp-json/posts?_jsonp=JSON_CALLBACK';
+      //http://urbanetradio.com/wp-json/posts?filter[posts_per_page]=25&_jsonp=JSON_CALLBACK
       $http.jsonp($scope.postsURL).success(function(data, status, headers, config) {
         $scope.posts = data;
         defer.resolve($scope.posts);

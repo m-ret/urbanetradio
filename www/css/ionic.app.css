@@ -1755,8 +1755,7 @@
   background: #fff; }
 .tab-news .top-border-non {
   background: #fff;
-  border-top: 0;
-  color: red; }
+  border-top: 0; }
 .tab-news .special-font p, .tab-news .special-font ul li, .tab-news .special-font h4 {
   font: normal;
   font-family: inherit;

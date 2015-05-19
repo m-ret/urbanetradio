@@ -109,10 +109,4 @@ angular.module('urbanet.app', ['ionic',
 
   $urlRouterProvider.otherwise('/tabs/news');
 
-})
-
-.run(function($http) {
-  $http.defaults.headers.common.Accept = 'application/json, text/html',
-  'Acess-Allow-Control-Origin: *';
 });
-

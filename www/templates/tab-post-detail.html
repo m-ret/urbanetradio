@@ -6,7 +6,7 @@
         <p>{{:: post.date | date}}</p>
       </div>
       <div class="item item-text-wrap item-image padding">
-        <div class="special-font" ng-bind-html="post.content"></div>
+        <div class="special-font" ng-bind-html="trustSrc(post.content)"></div>
       </div>
     </div>
   </ion-content>
